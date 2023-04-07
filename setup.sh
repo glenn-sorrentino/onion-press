@@ -17,7 +17,7 @@ cd onion-press/
 sudo tee /etc/tor/torrc << EOL
 RunAsDaemon 1
 HiddenServiceDir /var/lib/tor/hidden_service/
-HiddenServicePort 80 127.0.0.1:3000
+HiddenServicePort 80 127.0.0.1:80
 EOL
 
 # Restart Tor service
@@ -118,37 +118,8 @@ fi
 ln -sf /etc/nginx/sites-available/hush-line.nginx /etc/nginx/sites-enabled/
 nginx -t && systemctl restart nginx || error_exit
 
-# Check if Node.js and npm are installed
-if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
-    echo "Node.js and npm are required but not installed. Please install them and try again."
-    exit 1
-fi
-
-# Create package.json if it doesn't exist
-if [ ! -f package.json ]; then
-    echo "Creating package.json"
-    cat > package.json <<- EOM
-{
-  "name": "my_website",
-  "version": "1.0.0",
-  "description": "My Website using HTML, CSS, JavaScript, and Markdown",
-  "scripts": {
-    "start": "browser-sync start --server --files '**/*'"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "browser-sync": "^2.27.7"
-  }
-}
-EOM
-fi
-
 echo "
-✅ Installation complete!
+📖 Your book has been published!
                                                
 http://$ONION_ADDRESS
 "
-
-# Install dependencies
-echo "Installing dependencies"
-npm install
