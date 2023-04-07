@@ -5,7 +5,7 @@
 If you're running the app locally, clone the repository, then run dev.sh. Use a Debian-based OS for verified functionality. A Raspberry Pi running Raspberry Pi OS is a great choice if you have the hardware!
 
 ```
-apt update && apt -y dist-upgrade && apt install -y git && git clone https://github.com/glenn-sorrentino/onion-press.git && cd onion-press && chmod +x dev.sh && ./dev.sh
+apt update && apt -y dist-upgrade && apt install -y git && git clone https://github.com/glenn-sorrentino/onion-press.git && cd onion-press && chmod +x dev.sh && ./dev.sh && cd ../../
 ```
 
 Now just visit your IP address with port 3000 like this: 127.0.0.1:3000
@@ -41,5 +41,5 @@ Click on the new files and your content should render correctly.
 When you're ready to share your book, it's as simple as running:
 
 ```
-chmod +x setup.sh && ./setup.sh
+cd ../../ && chmod +x publi.sh && ./publi.sh
 ```
