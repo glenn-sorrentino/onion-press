@@ -81,4 +81,4 @@ $(document).ready(function() {
 });
 
 const introSection = introHTML ? `<section class="intro"><div class="wrapper" id="intro-wrapper">${introHTML}</div></section>` : '<section class="intro empty"></section>';
-const contentSection = bodyHTML ? `<section id="content" data-content="${chapter};
+const contentSection = bodyHTML ? `<section id="content" data-content="${chapter}"></section>` : '<section id="content" class="empty"></section>';
