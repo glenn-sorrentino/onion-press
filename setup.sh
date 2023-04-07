@@ -4,12 +4,8 @@
 apt update && apt -y dist-upgrade && apt -y autoremove
 apt install -y curl git nodejs npm tor curl gnupg2 ca-certificates lsb-release nginx
 
-# Remove current app files - 🚨 Make sure your updated markdown and static HTML files have been pushed to Git
-cd
-rm -r onion-press/
-
 # Clone the repo
-mkdir /var/www/html/ && cd /var/www/html/
+cd /var/www/html/
 git clone https://github.com/glenn-sorrentino/onion-press.git # If using Git your final static HTML should be located here. 
 cd onion-press/
 
