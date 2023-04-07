@@ -60,10 +60,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     await loadMarkdown("intro-wrapper", `md/${contentId}/intro.md`, !isCover, isCover ? totalTime : null);
     await loadMarkdown("about-content", `md/${contentId}/body.md`);
     await loadMarkdown("pagination-content", `md/${contentId}/pagination.md`);
-  }
 
-  countWords();
+    if (isCover) {
+      countWords();
+    }
+  }
 });
+
 
 function countWords() {
   const body = document.getElementById('about-content');
