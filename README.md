@@ -2,7 +2,7 @@
 
 ## Running Locally
 
-If you're running the app locally, clone the repository, then run dev.sh. Use a Debian build for an OS with verified functionality.
+If you're running the app locally, clone the repository, then run dev.sh. Use a Debian-based OS for verified functionality. A Raspberry Pi running Raspberry Pi OS is a great choice if you have the hardware!
 
 ```
 apt update && apt -y dist-upgrade && apt install -y git && git clone https://github.com/glenn-sorrentino/onion-press.git && cd onion-press && chmod +x dev.sh && ./dev.sh
