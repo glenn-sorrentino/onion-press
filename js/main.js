@@ -71,7 +71,9 @@ function countWords() {
   const readingTime = Math.ceil(words / 200); // assuming an average reading speed of 200 words per minute
   const readingTimeText = readingTime === 1 ? '1 minute' : `~${readingTime} min read`;
   const readingTimeElement = document.getElementById('reading-time');
-  readingTimeElement.innerText = readingTimeText;
+  if (readingTimeElement) {
+    readingTimeElement.innerText = readingTimeText;
+  }
 }
 
 $(document).ready(function() {
