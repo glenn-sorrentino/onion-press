@@ -1,4 +1,4 @@
-async function loadMarkdown(containerId, filePath, isIntro) {
+async function loadMarkdown(containerId, filePath, isIntro, totalReadingTime = null) {
   const response = await fetch(filePath);
   const markdown = await response.text();
   const container = document.getElementById(containerId);
@@ -16,16 +16,14 @@ async function loadMarkdown(containerId, filePath, isIntro) {
   if (isIntro) {
     // Calculate reading time
     const words = markdown.split(/\s+/g).length;
-    const readingTime = Math.ceil(words / 200); // Assuming 200 words per minute
+    const readingTime = totalReadingTime === null ? Math.ceil(words / 200) : totalReadingTime;
+    const readingTimeText = `${readingTime} min read`;
 
     // Add reading time element
     const readingTimeElement = document.createElement("div");
     readingTimeElement.id = "reading-time";
-    readingTimeElement.innerHTML = `${readingTime} min read`;
+    readingTimeElement.innerHTML = readingTimeText;
     container.insertBefore(readingTimeElement, container.firstChild);
-
-    // Call countWords() after creating the readingTimeElement
-    countWords();
   }
 }
 
@@ -63,6 +61,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     await loadMarkdown("about-content", `md/${contentId}/body.md`);
     await loadMarkdown("pagination-content", `md/${contentId}/pagination.md`);
   }
+
+  countWords();
 });
 
 function countWords() {
