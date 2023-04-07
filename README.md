@@ -29,7 +29,7 @@ Onion Press allows author to manage their content using markdown, a simplified f
 We're launching as an onion website, so a lot of the functionality making the development environment functional won't work in Tor Browser. Instead, we'll run build.sh to convert the markdown into HTML and generate our final, static pages. When you're ready to publish, navigate to the JS directory, then run build.js:
 
 ```
-cd js && chmod +x build.sh && node build.sh && cd .. && mkdir markdown-templates && mv introduction.html markdown-templates/ && mv ch*.html markdown-templates/ && cd js/output/ && mv *.html ../../
+cd js && chmod +x build.js && node build.js && cd .. && mkdir markdown-templates && mv introduction.html markdown-templates/ && mv ch*.html markdown-templates/ && cd js/output/ && mv *.html ../../
 ```
 
 Now, the root directory will have the static HTML files, and the markdown templates are located in the self-named folder.
