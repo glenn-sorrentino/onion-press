@@ -27,24 +27,25 @@ async function loadMarkdown(containerId, filePath, isIntro) {
 }
 
 async function getTotalReadingTime() {
-  const contentId = document.getElementById("content").dataset.content;
-  if (contentId === 'cover') {
-    let totalTime = 0;
-    const chapterPattern = /chapter-\d+/g;
-    const files = await fetch('md/');
-    const fileList = await files.text();
-    const chapters = fileList.match(chapterPattern);
+    const chapters = [
+    "cover",
+    "introduction",
+    "chapter-1",
+    "chapter-2",
+    "chapter-3"
+  ];
+    
+  let totalTime = 0;
 
-    for (const chapter of chapters) {
-      const response = await fetch(`md/${chapter}/intro.md`);
-      const introMd = await response.text();
-      const response2 = await fetch(`md/${chapter}/body.md`);
-      const bodyMd = await response2.text();
-      const words = (introMd + bodyMd).split(/\s+/g).length;
-      totalTime += Math.ceil(words / 200);
-    }
-    return totalTime;
+  for (const chapter of chapters) {
+    const response = await fetch(`md/${chapter}/intro.md`);
+    const introMd = await response.text();
+    const response2 = await fetch(`md/${chapter}/body.md`);
+    const bodyMd = await response2.text();
+    const words = (introMd + bodyMd).split(/\s+/g).length;
+    totalTime += Math.ceil(words / 200);
   }
+  return totalTime;
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
