@@ -23,6 +23,9 @@ async function loadMarkdown(containerId, filePath, isIntro) {
     readingTimeElement.id = "reading-time";
     readingTimeElement.innerHTML = `${readingTime} min read`;
     container.insertBefore(readingTimeElement, container.firstChild);
+
+    // Call countWords() after creating the readingTimeElement
+    countWords();
   }
 }
 
@@ -34,7 +37,7 @@ async function getTotalReadingTime() {
     "chapter-2",
     "chapter-3"
   ];
-    
+
   let totalTime = 0;
 
   for (const chapter of chapters) {
