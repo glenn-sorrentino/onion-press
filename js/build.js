@@ -54,7 +54,7 @@ function build() {
     fs.mkdirSync(outputDir);
   }
 
-  const chapters = ['introduction', 'chapter-1', 'chapter-2', 'chapter-3'];
+  const chapters = ['cover', 'introduction', 'chapter-1', 'chapter-2', 'chapter-3'];
 
   for (const [index, chapter] of chapters.entries()) {
     const chapterPath = path.join(inputDir, chapter);
