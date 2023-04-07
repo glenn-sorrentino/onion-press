@@ -31,6 +31,10 @@ body {
     font-family: 'Sans', Helvetica, Arial, sans-serif;
 }
 
+.empty {
+  display: none;
+}
+
 .btn {
     font-size: .875rem;
     padding: .875rem 1rem .75rem 1rem;
