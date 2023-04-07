@@ -1,3 +1,5 @@
-## Chapter 3: The Thousand And One Bottles
+## Chapter 3: The Command Line Interface
 
-So it was that on the twenty-ninth day of February, at the beginning of the thaw, this singular person fell out of infinity into Iping village. Next day his luggage arrived through the slush—and very remarkable luggage it was. 
+“Back in the days of the command-line interface, users were all Morlocks who had to convert their thoughts into alphanumeric symbols and type them in, a grindingly tedious process that stripped away all ambiguity, laid bare all hidden assumptions, and cruelly punished laziness and imprecision.” 
+
+— Neal Stephenson, from In the Beginning...Was the Command Line, 1999

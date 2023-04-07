@@ -1,3 +1,3 @@
-## Chapter 1: The Strange Man's Arrival
+## Chapter 1: Protecting Yourself
 
-The stranger came early in February, one wintry day, through a biting wind and a driving snow, the last snowfall of the year, over the down, walking from Bramblehurst railway station, and carrying a little black portmanteau in his thickly gloved hand.
+Most aren’t very aware of it, but we’re all under surveillance. Telecom companies and tech giants have access to a massive amount of private data about everyone who uses phones and the internet, from our exact physical locations at any given time to the content of our text messages and emails, and they can share this data with leak investigators.

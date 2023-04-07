@@ -3,7 +3,7 @@ const path = require('path');
 const { marked } = require('marked');
 
 const inputDir = path.join(__dirname, '..', 'md');
-const outputDir = 'output';
+const outputDir = 'output'; // the directory where your static HTML files will be generated
 
 function generateHTML(markdown) {
   if (!markdown) {
@@ -48,33 +48,24 @@ function calculateReadTime(text) {
   return Math.ceil(wordCount / wordsPerMinute);
 }
 
-function getDirectories(srcpath) {
-  return fs.readdirSync(srcpath)
-    .filter(file => fs.lstatSync(path.join(srcpath, file)).isDirectory());
-}
-
 function build() {
   // Ensure output directory exists
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir);
   }
 
-  const chapters = ['cover', 'introduction', ...getDirectories(inputDir).filter(d => d.startsWith('chapter-'))];
-
-  let totalReadTime = 0;
+  const chapters = ['introduction', 'chapter-1', 'chapter-2', 'chapter-3'];
 
   for (const [index, chapter] of chapters.entries()) {
     const chapterPath = path.join(inputDir, chapter);
 
     // Read intro, body, and pagination markdown files for each chapter
-    const introHTML = introMd ? `<div id="reading-time">~${index === 0 ? totalReadTime : readTime} min read</div>` + marked(introMd) : '';
-    const bodyHTML = marked(bodyMd);
-    const paginationHTML = marked(paginationMd);
-    const footerHTML = marked(fs.readFileSync(path.join(inputDir, 'footer.md'), 'utf-8'));
-
+    const introMd = fs.readFileSync(path.join(chapterPath, 'intro.md'), 'utf-8');
+    const bodyMd = fs.readFileSync(path.join(chapterPath, 'body.md'), 'utf-8');
+    const paginationMd = fs.readFileSync(path.join(chapterPath, 'pagination.md'), 'utf-8');
+    
     // Calculate read time
     const readTime = calculateReadTime(introMd + bodyMd);
-    totalReadTime += readTime;
     
     const navHTML = marked(fs.readFileSync(path.join(inputDir, 'nav.md'), 'utf-8'));
     const introHTML = `<div id="reading-time">~${readTime} min read</div>` + marked(introMd);
@@ -119,7 +110,7 @@ function build() {
 </body>
 </html>`;
 
-    const outputFilename = index === 0 ? 'cover.html' 'introduction.html' : `chapter-${index}.html`;
+    const outputFilename = index === 0 ? 'introduction.html' : `chapter-${index}.html`;
     fs.writeFileSync(path.join(outputDir, outputFilename), htmlContent);
   }
 }

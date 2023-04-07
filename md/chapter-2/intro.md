@@ -1,3 +1,3 @@
-## Chapter 2: Mr. Teddy Henfrey's First Impressions
+## Chapter 2: Acquiring Datasets
 
-At four o’clock, when it was fairly dark and Mrs. Hall was screwing up her courage to go in and ask her visitor if he would take some tea, Teddy Henfrey, the clock-jobber, came into the bar. “My sakes! Mrs. Hall,” said he, “but this is terrible weather for thin boots!” The snow outside was falling faster. 
+In early January 2010, 22-year-old Chelsea Manning sat at a Windows computer in a temporary Sensitive Compartmentalized Information Facility (SCIF)—an enclosed area or room that’s suitable for working with secret documents—in eastern Baghdad. She was downloading half a million secret “significant activity” reports from the military network SIPRNet, a Department of Defense computer network that’s suitable for transmitting classified information.

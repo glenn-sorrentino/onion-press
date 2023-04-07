@@ -5,9 +5,10 @@ apt update && apt -y dist-upgrade && apt -y autoremove
 apt install -y curl git nodejs npm tor curl gnupg2 ca-certificates lsb-release nginx
 
 # Clone the repo
+mkdir /var/www/html/
 cd /var/www/html/
-git clone https://github.com/glenn-sorrentino/onion-press.git # If using Git your final static HTML should be located here. 
-cd onion-press/
+git clone https://github.com/glenn-sorrentino/hlr-website.git
+cd hlr-website/
 
 # Create Tor configuration file
 sudo tee /etc/tor/torrc << EOL
@@ -28,7 +29,7 @@ cat > /etc/nginx/sites-available/hush-line.nginx << EOL
 server {
     listen 80;
     server_name localhost;
-    root /var/www/html/onion-press/;
+    root /var/www/html/hlr-website/;
     index index.html;
 
     location / {
@@ -114,8 +115,50 @@ fi
 ln -sf /etc/nginx/sites-available/hush-line.nginx /etc/nginx/sites-enabled/
 nginx -t && systemctl restart nginx || error_exit
 
+# Check if Node.js and npm are installed
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+    echo "Node.js and npm are required but not installed. Please install them and try again."
+    exit 1
+fi
+
+# Create package.json if it doesn't exist
+if [ ! -f package.json ]; then
+    echo "Creating package.json"
+    cat > package.json <<- EOM
+{
+  "name": "my_website",
+  "version": "1.0.0",
+  "description": "My Website using HTML, CSS, JavaScript, and Markdown",
+  "scripts": {
+    "start": "browser-sync start --server --files '**/*'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.27.7"
+  }
+}
+EOM
+fi
+
 echo "
-📖 Your book has been published!
+✅ Installation complete!
                                                
 http://$ONION_ADDRESS
 "
+
+# Install dependencies
+echo "Installing dependencies"
+npm install
+
+# Build static HTML
+echo "Building static HTML"
+cd js/
+node build.js
+cd output/
+mkdir /var/www/html/hlr-website/archive/
+mv /var/www/html/hlr-website/introduction.html /var/www/html/hlr-website/archive/introduction.html
+mv /var/www/html/hlr-website/chapter-1.html /var/www/html/hlr-website/archive/chapter-1.html
+mv /var/www/html/hlr-website/chapter-2.html /var/www/html/hlr-website/archive/chapter-2.html
+mv /var/www/html/hlr-website/chapter-3.html /var/www/html/hlr-website/archive/chapter-3.html
+mv * /var/www/html/hlr-website/
+systemctl restart nginx 

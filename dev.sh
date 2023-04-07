@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Update and install software
-apt update && apt -y dist-upgrade && apt -y autoremove
-apt install -y curl git nodejs npm tor curl gnupg2 ca-certificates lsb-release nginx
-
 # Check if Node.js and npm are installed
 if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
     echo "Node.js and npm are required but not installed. Please install them and try again."
