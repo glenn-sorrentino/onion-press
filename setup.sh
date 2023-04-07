@@ -32,7 +32,7 @@ cat > /etc/nginx/sites-available/hush-line.nginx << EOL
 server {
     listen 80;
     server_name localhost;
-    root /var/www/html/hlr-website/;
+    root /var/www/html/onion-press/;
     index index.html;
 
     location / {
