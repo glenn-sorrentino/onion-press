@@ -5,16 +5,15 @@ apt update && apt -y dist-upgrade && apt -y autoremove
 apt install -y curl git nodejs npm tor curl gnupg2 ca-certificates lsb-release nginx
 
 # Clone the repo
-mkdir /var/www/html/
-cd /var/www/html/
-git clone https://github.com/glenn-sorrentino/hlr-website.git
-cd hlr-website/
+mkdir /var/www/html/ && cd /var/www/html/
+git clone https://github.com/glenn-sorrentino/onion-press.git # If using Git your final static HTML should be located here. 
+cd onion-press/
 
 # Create Tor configuration file
 sudo tee /etc/tor/torrc << EOL
 RunAsDaemon 1
 HiddenServiceDir /var/lib/tor/hidden_service/
-HiddenServicePort 80 127.0.0.1:80
+HiddenServicePort 80 127.0.0.1:3000
 EOL
 
 # Restart Tor service
@@ -149,11 +148,3 @@ http://$ONION_ADDRESS
 # Install dependencies
 echo "Installing dependencies"
 npm install
-
-# Build static HTML
-echo "Building static HTML"
-cd js/
-node build.js
-cd output/
-mv * /var/www/html/hlr-website/
-systemctl restart nginx 
