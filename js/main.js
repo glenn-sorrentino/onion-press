@@ -59,6 +59,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     await loadMarkdown("about-content", `md/${contentId}/body.md`);
     await loadMarkdown("pagination-content", `md/${contentId}/pagination.md`);
   }
+
+  countWords();
 });
 
 function countWords() {
