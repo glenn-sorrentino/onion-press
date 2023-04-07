@@ -110,7 +110,7 @@ function build() {
 </body>
 </html>`;
 
-    const outputFilename = index === 0 ? 'introduction.html' : `chapter-${index}.html`;
+    const outputFilename = index === 0 ? 'cover.html' 'introduction.html' : `chapter-${index}.html`;
     fs.writeFileSync(path.join(outputDir, outputFilename), htmlContent);
   }
 }
